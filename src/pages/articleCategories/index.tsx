@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Tag, Button } from 'antd';
 import { fetchAddCategory, fetchGetAllCategory } from '../../api/modules/category';
 import type { ICategoryRes } from '../articleEditor/type';
@@ -7,7 +7,7 @@ const ArticleCategory = () => {
   useEffect(() => {
     getAllCategories();
   }, [])
-  const getAllCategories = async() => {
+  const getAllCategories = async () => {
     try {
       const res = await fetchGetAllCategory();
       setCategoryList(res.data);
@@ -16,9 +16,9 @@ const ArticleCategory = () => {
       console.log(error)
     }
   }
-  const addCategory = async(name:string) => {
+  const addCategory = async (name:string) => {
     try {
-      const res = await fetchAddCategory({name})
+      const res = await fetchAddCategory({ name })
       console.log(res, 'categoryRes')
     } catch (error) {
       console.log(error);

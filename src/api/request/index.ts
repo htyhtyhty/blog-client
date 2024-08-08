@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type {AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig} from 'axios';
+import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 interface IInterceptors<T = AxiosResponse> {
   requestSuccessFn?: (config: any) => InternalAxiosRequestConfig;
   requestFailureFn?: (config: any) => any;
@@ -17,23 +17,25 @@ class Request {
     this.instance = axios.create(config);
     this.interceptorsObj = config.interceptors;
     // 全局请求拦截
-    this.instance.interceptors.request.use((res) => {
-      return res;
+    this.instance.interceptors.request.use((config) => {
+      const token = window.localStorage.getItem('token');
+      if (token) {
+        config.headers.Authorization = localStorage.getItem('token');
+      }
+      return config;
     }, (err) => {
       console.log(err);
       return err;
     })
      // 添加自定义请求/响应拦截
     this.instance.interceptors.request.use(
-      this.interceptorsObj?.requestSuccessFn, 
+      this.interceptorsObj?.requestSuccessFn,
       this.interceptorsObj?.requestFailureFn);
     this.instance.interceptors.response.use(
-      this.interceptorsObj?.responseSuccessFn, 
+      this.interceptorsObj?.responseSuccessFn,
       this.interceptorsObj?.responseFailureFn)
-    // 全局相应拦截
-    this.instance.interceptors.response.use((res: AxiosResponse) => {
-      return res.data
-    }, (err) => {
+    // 全局响应拦截
+    this.instance.interceptors.response.use((res: AxiosResponse) => res.data, (err) => {
       console.log(err);
       return err;
     })
@@ -43,27 +45,27 @@ class Request {
       config = config.interceptors.requestSuccessFn(config);
     }
     return new Promise<T>((resolve, reject) => {
-      this.instance.request<any, T>(config).then(res => {
+      this.instance.request<any, T>(config).then((res) => {
         if (config.interceptors?.responseSuccessFn) {
           res = config.interceptors.responseSuccessFn(res);
         }
         resolve(res)
-      }).catch(err => {
+      }).catch((err) => {
         reject(err);
       });
     })
   }
   get<T>(config: IRequestConfig<T>) {
-    return this.request({...config, method: 'GET'});
+    return this.request({ ...config, method: 'GET' });
   }
   post<T>(config: IRequestConfig<T>) {
-    return this.request({...config, method: 'POST'});
+    return this.request({ ...config, method: 'POST' });
   }
   delete<T>(config: IRequestConfig<T>) {
-    return this.request({...config, method: 'DELETE'});
+    return this.request({ ...config, method: 'DELETE' });
   }
   patch<T>(config: IRequestConfig<T>) {
-    return this.request({...config, method: 'PATCH'});
+    return this.request({ ...config, method: 'PATCH' });
   }
 }
 export default Request;

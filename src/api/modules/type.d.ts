@@ -3,10 +3,10 @@ interface IAdmin {
   password:string;
 }
 interface ILoginRes {
-  msg:string; 
-  token:string; 
-  userId:number; 
-  userName:string; 
+  msg:string;
+  token:string;
+  userId:number;
+  userName:string;
 }
 
 interface IArticleSubmitReq {
@@ -17,20 +17,37 @@ interface IArticleSubmitReq {
   coverUrl:string;
 }
 interface IArticleListReq {
-  current:number; 
+  current:number;
   pageSize:number;
+  title?:string;
+  categoryIdList?:number[];
 }
 interface IArticleItem {
   author:any;
-  content:string; 
+  content:string;
   createTime:string;
-  momentId:number;
+  id:number;
 }
 interface IArticleListRes {
   data: IArticleItem[];
   message:string;
-  pageSize:string;
-  total:string;
-  current:string;
+  pageSize:number;
+  total:number;
+  current:number;
 }
-declare module 'prismjs'
+
+interface IGetArticleStateReq {
+  userId: number;
+  articleId:number;
+}
+
+interface IHandleLikeReq extends IGetArticleStateReq {
+  type:number;
+}
+
+interface IAddCommentReq {
+  content: string;
+  articleId: number;
+  userId: number;
+  commentId?: number;
+}

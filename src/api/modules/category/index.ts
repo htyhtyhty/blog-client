@@ -1,19 +1,19 @@
-import {Request} from '../../index';
-export const fetchAddCategory = (params: {name:string}) => {
-  const res = Request.post({
+import { Request } from '../../index';
+export const fetchAddCategory = async (params: {name:string}) => {
+  const res = await Request.post<any>({
     url: 'category',
-    data: params
+    data: params,
   })
   return res;
 }
-export const fetchGetArticle = (articleId:number):any => {
-  const res = Request.get({
+export const fetchGetArticle = async (articleId:number) => {
+  const res = await Request.get<any>({
     url: `article/${articleId}`,
   })
   return res;
 }
-export const fetchGetAllCategory = () => {
-  const res = Request.get<any>({
+export const fetchGetAllCategory = async () => {
+  const res = await Request.get<any>({
     url: 'category',
   })
   return res;

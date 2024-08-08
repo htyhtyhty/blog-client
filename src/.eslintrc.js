@@ -22,6 +22,8 @@ module.exports = {
     "@typescript-eslint/naming-convention": 0,
     "no-console": 1,
     "no-unused-vars": 1,
+    "noUnusedLocals": "off",
+    "noUnusedParameters": "off",
     "@typescript-eslint/no-unsafe-assignment": "off",
     "@typescript-eslint/no-unsafe-member-access": "off",
   },

@@ -1,21 +1,21 @@
 import React from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Form, Input } from 'antd';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
+import { encrypt } from 'src/utils';
 import { fetchLogin } from '../../api/modules/admin';
 const Login: React.FC = () => {
   const [form] = Form.useForm()
   const navigate = useNavigate();
-  const onFinish = async(values: any) => {
-    const {username, password} = values;
-    const res = await fetchLogin({name: username, password});
-    if (res) {
-      localStorage.setItem('token', res.token);
+  const onFinish = async (values: any) => {
+    const { username, password } = values;
+    const encryptPassword = await encrypt(password.trim());
+    const res = await fetchLogin({ name: username, password: encryptPassword });
+    if (res.token) {
+      localStorage.setItem('token', `Bearer ${ res.token}`);
       localStorage.setItem('userId', String(res.userId));
       navigate('/');
     }
-    console.log(res, 'res')
   };
   return (
     <div className="h-screen">

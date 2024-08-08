@@ -1,7 +1,7 @@
-import React, {useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { Tag } from 'antd';
 import { fetchAddCategory, fetchGetAllCategory } from '../../../api/modules/category';
-import type { ICategoryRes } from "../type";
+import type { ICategoryRes } from '../type';
 const { CheckableTag } = Tag;
 interface IProps {
   selectedTags: number[];
@@ -13,7 +13,7 @@ export const ArticleCategorySelect:React.FC<IProps> = (props) => {
   useEffect(() => {
     getAllCategories();
   }, [])
-  const getAllCategories = async() => {
+  const getAllCategories = async () => {
     try {
       const res = await fetchGetAllCategory();
       setCategoryList(res.data);
@@ -27,16 +27,16 @@ export const ArticleCategorySelect:React.FC<IProps> = (props) => {
     if (checked) {
       setSelectedTags([...selectedTags, tagId]);
     } else {
-      const resTags = selectedTags.filter(item => item !== tagId);
+      const resTags = selectedTags.filter((item) => item !== tagId);
       setSelectedTags(resTags);
     }
   }
   return (
     <div>
       {
-        categoryList.map(item => (
+        categoryList.map((item) => (
           <CheckableTag key={item.categoryId} checked={selectedTags.indexOf(item.categoryId) > -1 }
-          onChange={checked => handleChange(item.categoryId, checked)}
+          onChange={(checked) => handleChange(item.categoryId, checked)}
           >
             {item.categoryName}
           </CheckableTag>
