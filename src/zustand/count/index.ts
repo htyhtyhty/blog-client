@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { fetchGetInfoCount } from 'src/api/modules/article';
+import { create } from 'zustand'
+import { fetchGetInfoCount } from 'src/api/modules/article'
 
 const initState = {
   articleTotal: 0,
@@ -8,18 +8,18 @@ const initState = {
 }
 
 interface IUserInfo {
-  articleTotal: number;
-  categoryTotal: number;
-  tagTotal: number;
+  articleTotal:number;
+  categoryTotal:number;
+  tagTotal:number;
 }
 interface IState {
-  countInfo: IUserInfo;
-  setCountInfo: () => void;
+  countInfo:IUserInfo;
+  setCountInfo:()=>void;
 }
 export const useCountStore = create<IState>((set) => ({
   countInfo: initState,
   setCountInfo: async () => {
-    const res = await fetchGetInfoCount();
-    set({ countInfo: res.data });
+    const res = await fetchGetInfoCount()
+    set({ countInfo: res.data })
   },
 }))

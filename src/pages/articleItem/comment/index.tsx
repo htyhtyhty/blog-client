@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { Input, Button, message } from 'antd';
-import { fetchAddComment, fetchGetCommentList } from 'src/api/modules/comment';
-import type { IGetCommentReq } from '../type';
+import React, { useState, useEffect } from 'react'
+import { Input, Button, message } from 'antd'
+import { fetchAddComment, fetchGetCommentList } from 'src/api/modules/comment'
+import type { IGetCommentReq } from '../type'
 export const Comment = (props) => {
   const { articleId } = props
-  const { TextArea } = Input;
+  const { TextArea } = Input
   // 评论发表内容
-  const [inputVal, setInputVal] = useState('');
+  const [inputVal, setInputVal] = useState('')
   // 评论列表
-  const [commentList, setCommentList] = useState([]);
+  const [commentList, setCommentList] = useState([])
 
   useEffect(() => {
-    getCommentList();
+    getCommentList()
   }, [])
-  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    console.log('Change:', e.target.value);
+  const onChange = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
+    console.log('Change:', e.target.value)
     setInputVal(e.target.value)
   }
 
   const handleAddComment = () => {
-    addComment();
+    addComment()
     console.log('rrr')
   }
 
@@ -32,29 +32,29 @@ export const Comment = (props) => {
       if (commentId) {
         params.commentId = commentId
       }
-      const res = await fetchGetCommentList(params);
+      const res = await fetchGetCommentList(params)
       if (res.data?.length) {
-        console.log(res);
+        console.log(res)
         setCommentList(res.data)
       }
     } catch (error) {
-      console.log(error);
-      message.error(error);
+      console.log(error)
+      message.error(error)
     }
   }
   const addComment = async () => {
     try {
       const res = await fetchAddComment({
         articleId,
-        userId: localStorage.getItem('userId') || 0,
+        userId: localStorage.getItem('userId') || '',
         content: inputVal,
       })
       if (res.data) {
-        message.success('评论成功');
+        message.success('评论成功')
       }
     } catch (error) {
-      console.log(error);
-      message.error(error);
+      console.log(error)
+      message.error(error)
     }
   }
   return (

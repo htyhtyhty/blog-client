@@ -1,1 +1,1 @@
-declare function ArticleEditor(): any;
+declare function ArticleEditor():any;

@@ -1,7 +1,7 @@
-import React from "react";
-import {Input, Table, Button} from 'antd';
+import React from 'react'
+import { Input, Table, Button } from 'antd'
 const CategoryManagement = () => {
-  const {Search} = Input;
+  const { Search } = Input
   const columns = [
     {
       title: 'id',
@@ -21,24 +21,29 @@ const CategoryManagement = () => {
     {
       title: '操作',
       key: 'action',
-      render () {
-        return <div>
+      render() {
+        return (
+<div>
           <Button>编辑</Button>
           <Button>删除</Button>
-        </div>
-      }
+</div>
+)
+      },
     },
-    
-  ];
-  const onSearch = (value: string) => {
-    console.log(value);
-  };
-  return <div>
+
+  ]
+  const onSearch = (value:string) => {
+    console.log(value)
+  }
+  return (
+<div>
     <Search placeholder="请输入分类名称" allowClear
       enterButton="Search"
       size="large"
-      onSearch={onSearch} />
-    <Table columns={columns}  />
-  </div>
+      onSearch={onSearch}
+    />
+    <Table columns={columns} />
+</div>
+)
 }
-export default CategoryManagement;
+export default CategoryManagement

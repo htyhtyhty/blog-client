@@ -1,22 +1,22 @@
-import React from 'react';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Form, Input } from 'antd';
-import { useNavigate } from 'react-router';
-import { encrypt } from 'src/utils';
-import { fetchLogin } from '../../api/modules/admin';
-const Login: React.FC = () => {
+import React from 'react'
+import { LockOutlined, UserOutlined } from '@ant-design/icons'
+import { Button, Form, Input } from 'antd'
+import { useNavigate } from 'react-router'
+import { encrypt } from 'src/utils'
+import { fetchLogin } from '../../api/modules/admin'
+const Login:React.FC = () => {
   const [form] = Form.useForm()
-  const navigate = useNavigate();
-  const onFinish = async (values: any) => {
-    const { username, password } = values;
-    const encryptPassword = await encrypt(password.trim());
-    const res = await fetchLogin({ name: username, password: encryptPassword });
+  const navigate = useNavigate()
+  const onFinish = async (values:any) => {
+    const { username, password } = values
+    const encryptPassword = await encrypt(password.trim())
+    const res = await fetchLogin({ name: username, password: encryptPassword })
     if (res.token) {
-      localStorage.setItem('token', `Bearer ${ res.token}`);
-      localStorage.setItem('userId', String(res.userId));
-      navigate('/');
+      localStorage.setItem('token', `Bearer ${ res.token}`)
+      localStorage.setItem('userId', String(res.userId))
+      navigate('/')
     }
-  };
+  }
   return (
     <div className="h-screen">
       <Form
@@ -49,6 +49,6 @@ const Login: React.FC = () => {
         </Form.Item>
       </Form>
     </div>
-  );
-};
-export default Login;
+  )
+}
+export default Login

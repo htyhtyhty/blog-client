@@ -1,33 +1,33 @@
-import React, { useState } from 'react';
-import { Menu, Button } from 'antd';
-import { Link } from 'react-router-dom';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { useNavigate } from 'react-router';
-import { RouterMap } from '../../router';
+import React, { useState } from 'react'
+import { Menu, Button } from 'antd'
+import { Link } from 'react-router-dom'
+import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons'
+import type { MenuProps } from 'antd'
+import { useNavigate } from 'react-router'
+import { RouterMap } from '../../router'
 interface IMenuItem {
-  label: string;
-  key: string;
-  icon: any;
+  label:string;
+  key:string;
+  icon:any;
 }
 export const BlobHeader = () => {
-  const navigate = useNavigate();
-  const [current, setCurrent] = useState('mail');
-  const menus: IMenuItem[] = RouterMap.filter((item) => item.isMenu).map((item) => ({
+  const navigate = useNavigate()
+  const [current, setCurrent] = useState('mail')
+  const menus:IMenuItem[] = RouterMap.filter((item) => item.isMenu).map((item) => ({
       label: item.name,
       key: item.path,
       icon: <MailOutlined />,
-    }));
+    }))
 
-  const onClick: MenuProps['onClick'] = (e) => {
-    console.log('click ', e);
-    setCurrent(e.key);
-  };
+  const onClick:MenuProps['onClick'] = (e) => {
+    console.log('click ', e)
+    setCurrent(e.key)
+  }
   const handleOut = () => {
-    navigate('/login');
+    navigate('/login')
   }
   const handleToBackStage = () => {
-    navigate('/backstageManagement');
+    navigate('/backstageManagement')
   }
   return (
     <div className="flex justify-between">

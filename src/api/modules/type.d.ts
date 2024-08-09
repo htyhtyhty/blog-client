@@ -29,7 +29,7 @@ interface IArticleItem {
   id:number;
 }
 interface IArticleListRes {
-  data: IArticleItem[];
+  data:IArticleItem[];
   message:string;
   pageSize:number;
   total:number;
@@ -37,7 +37,7 @@ interface IArticleListRes {
 }
 
 interface IGetArticleStateReq {
-  userId: number;
+  userId:number;
   articleId:number;
 }
 
@@ -46,8 +46,8 @@ interface IHandleLikeReq extends IGetArticleStateReq {
 }
 
 interface IAddCommentReq {
-  content: string;
-  articleId: number;
-  userId: number;
-  commentId?: number;
+  content:string;
+  articleId:number;
+  userId:string;
+  commentId?:number;
 }

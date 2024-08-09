@@ -1,8 +1,8 @@
 export interface IProps {
-  name: string
+  name:string
 }
 export interface IPagination {
-  current: number
-  pageSize: number
-  total: number
+  current:number
+  pageSize:number
+  total:number
 }

@@ -1,5 +1,5 @@
-import React from 'react';
-const Register: React.FC = () => <div>
+import React from 'react'
+const Register:React.FC = () => <div>
     Register
-                                 </div>
-export default Register;
+                                </div>
+export default Register

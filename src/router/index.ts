@@ -1,8 +1,8 @@
-import React, { lazy } from 'react';
-import { LaptopOutlined } from '@ant-design/icons';
-import { IRouter } from './type';
+import React, { lazy } from 'react'
+import { LaptopOutlined } from '@ant-design/icons'
+import { IRouter } from './type'
 
-export const RouterMap: IRouter[] = [
+export const RouterMap:IRouter[] = [
   {
     name: '文章',
     path: '/',

@@ -1,21 +1,22 @@
-import React, {useState} from 'react';
-import { Layout, Breadcrumb, Menu } from 'antd';
-import { Header as InnerHeader } from './components/header';
-import { Layout as InnerLayout } from './components/layout';
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
-import {useNavigate} from 'react-router';
-import { backstageMenu } from 'src/router';
-import { Outlet } from 'react-router-dom';
-import type { MenuProps } from 'antd';
-const { Content, Header, Footer, Sider } = Layout;
+import React, { useState } from 'react'
+import { Layout, Breadcrumb, Menu } from 'antd'
+import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons'
+import { useNavigate } from 'react-router'
+import { backstageMenu } from 'src/router'
+import { Outlet } from 'react-router-dom'
+import type { MenuProps } from 'antd'
+import { Layout as InnerLayout } from './components/layout'
+import { Header as InnerHeader } from './components/header'
+const { Content, Header, Footer, Sider } = Layout
 const BackstageManagement = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const stepToMenu = (path:string) => {
-    navigate(path);
+    navigate(path)
   }
-  return <>
+  return (
+<>
   <Layout>
-    <Header className="header" style={{backgroundColor: '#fff'}}>
+    <Header className="header" style={{ backgroundColor: '#fff' }}>
       <InnerHeader />
     </Header>
     <Layout>
@@ -24,7 +25,7 @@ const BackstageManagement = () => {
           mode="inline"
           defaultSelectedKeys={['1']}
           defaultOpenKeys={['sub1']}
-          style={{ height: '100%', borderRight: 0 }} 
+          style={{ height: '100%', borderRight: 0 }}
           items={backstageMenu}
           onClick={(e) => stepToMenu(e.key)}
         />
@@ -43,6 +44,7 @@ const BackstageManagement = () => {
       </Layout>
     </Layout>
   </Layout>
-    </>
+</>
+)
 }
-export default BackstageManagement;
+export default BackstageManagement

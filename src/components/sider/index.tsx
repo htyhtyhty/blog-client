@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useUserStore } from 'src/zustand/user';
-import { useCountStore } from 'src/zustand/count';
+import React, { useState, useEffect } from 'react'
+import { useUserStore } from 'src/zustand/user'
+import { useCountStore } from 'src/zustand/count'
 interface IUserInfo {
-  name: string;
-  url: string;
-  id: number;
-  description: string;
+  name:string;
+  url:string;
+  id:number;
+  description:string;
 }
-export const SiderWrap: React.FC<any> = () => {
-  const userInfo = useUserStore((state) => state.userInfo);
-  const countInfo = useCountStore((state) => state.countInfo);
+export const SiderWrap:React.FC<any> = () => {
+  const userInfo = useUserStore((state) => state.userInfo)
+  const countInfo = useCountStore((state) => state.countInfo)
   return (
     <div>
       <div>

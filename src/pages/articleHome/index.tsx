@@ -1,15 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { fetchGetArticleList } from '../../api/modules/article';
-import { ArticleCard } from './articleCard';
-const ArticleHome: React.FC = () => {
-  const [articleList, setArticleList] = useState<IArticleItem[]>([] as any as IArticleItem[]);
+import React, { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import { Paginate } from 'src/components/paginate'
+import { fetchGetArticleList } from '../../api/modules/article'
+import { ArticleCard } from './articleCard'
+const ArticleHome:React.FC = () => {
+  const [articleList, setArticleList] = useState<IArticleItem[]>([] as any as IArticleItem[])
+  const [total, setTotal] = useState(0)
+  const [currentPage, setCurrentPage] = useState(0)
   useEffect(() => {
-    getArticleList();
+    getArticleList()
   }, [])
-  const getArticleList = async () => {
-    const res = await fetchGetArticleList({ current: 1, pageSize: 40 });
-    setArticleList(res.data)
+  const getArticleList = async (currentPage = { current: 1, pageSize: 10 }) => {
+    try {
+      const res = await fetchGetArticleList(currentPage)
+      setArticleList(res.data)
+      setTotal(res.total)
+      setCurrentPage(res.current)
+    } catch (error) {
+      console.log(error)
+      throw new Error(error)
+    }
   }
   return (
 <div>
@@ -36,7 +46,8 @@ const ArticleHome: React.FC = () => {
     {
       articleList?.map((item) => <ArticleCard key={item} data={item || {}} />)
     }
+    <Paginate articleList={articleList} total={total} getListFn={getArticleList} currentPage={currentPage} />
 </div>
 )
 }
-export default ArticleHome;
+export default ArticleHome

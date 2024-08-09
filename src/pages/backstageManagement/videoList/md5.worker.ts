@@ -1,10 +1,10 @@
 // import { getUploadDetail, merge } from 'src/api/modules/bigFile';
 // import {getIdentityAndName, getChunkSize, packageTasks, getChunks, paralleTask} from './handle';
-import SparkMD5 from 'spark-md5';
+import SparkMD5 from 'spark-md5'
 
-onmessage = async (event: any) => {
-  const data = event.data;
-  const { md5, suffix } = await getIdentityAndName(data);
+onmessage = async (event:any) => {
+  const data = event.data
+  const { md5, suffix } = await getIdentityAndName(data)
   postMessage({ success: true, md5, suffix })
   // const res = await getUploadDetail({ md5, suffix });
 
@@ -28,23 +28,23 @@ onmessage = async (event: any) => {
   // await paralleTask(tasks, 4);
   // await merge({ md5, suffix });
   // postMessage({ success: true, message: '上传成功!' });
-};
-export const getIdentityAndName = (file: any): { md5: string; suffix: string } => new Promise((resolve, reject) => {
-    const suffix = file.name.split('.')[1];
-    const fileReader = new FileReader();
-    fileReader.readAsArrayBuffer(file);
+}
+export const getIdentityAndName = (file:any):{ md5:string; suffix:string } => new Promise((resolve, reject) => {
+    const suffix = file.name.split('.')[1]
+    const fileReader = new FileReader()
+    fileReader.readAsArrayBuffer(file)
     fileReader.onload = (e) => {
-      const buffer = e.target?.result;
-      const spark = new SparkMD5.ArrayBuffer();
-      spark.append(buffer as ArrayBuffer);
-      const md5 = spark.end();
-      resolve({ md5, suffix });
-    };
+      const buffer = e.target?.result
+      const spark = new SparkMD5.ArrayBuffer()
+      spark.append(buffer as ArrayBuffer)
+      const md5 = spark.end()
+      resolve({ md5, suffix })
+    }
     fileReader.onerror = () => {
       fileReader.onerror = function (error) {
-        reject(error);
-      };
-    };
+        reject(error)
+      }
+    }
   }) as any
 
-export {};
+export {}

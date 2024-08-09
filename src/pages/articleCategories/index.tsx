@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { Tag, Button } from 'antd';
-import { fetchAddCategory, fetchGetAllCategory } from '../../api/modules/category';
-import type { ICategoryRes } from '../articleEditor/type';
+import React, { useState, useEffect } from 'react'
+import { Tag, Button } from 'antd'
+import { fetchAddCategory, fetchGetAllCategory } from '../../api/modules/category'
+import type { ICategoryRes } from '../articleEditor/type'
 const ArticleCategory = () => {
-  const [categoryList, setCategoryList] = useState<ICategoryRes[]>([]);
+  const [categoryList, setCategoryList] = useState<ICategoryRes[]>([])
   useEffect(() => {
-    getAllCategories();
+    getAllCategories()
   }, [])
   const getAllCategories = async () => {
     try {
-      const res = await fetchGetAllCategory();
-      setCategoryList(res.data);
+      const res = await fetchGetAllCategory()
+      setCategoryList(res.data)
       console.log(res.data, 'datatadta')
     } catch (error) {
       console.log(error)
@@ -21,7 +21,7 @@ const ArticleCategory = () => {
       const res = await fetchAddCategory({ name })
       console.log(res, 'categoryRes')
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   }
   return (
@@ -33,4 +33,4 @@ const ArticleCategory = () => {
     </div>
   )
 }
-export default ArticleCategory;
+export default ArticleCategory

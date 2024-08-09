@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.App {
+  // background-image: url('../public/image/1771b9763bd2fb7652bdd133b74c1af3.jpeg');
+  position: relative;
+  .ant-layout {
+    // background-image: url('../public/image/1771b9763bd2fb7652bdd133b74c1af3.jpeg');
+  }
+  .background-wrap {
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-image: url('../public/image/1771b9763bd2fb7652bdd133b74c1af3.jpeg');
+  }
+}

@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { fetchGetUserInfo } from 'src/api/modules/user';
+import { create } from 'zustand'
+import { fetchGetUserInfo } from 'src/api/modules/user'
 
 const initState = {
   name: 'hty',
@@ -8,19 +8,19 @@ const initState = {
   description: '这个人很懒，什么都没有留下',
 }
 interface IUserInfo {
-  name: string;
-  url: string;
-  id: number;
-  description: string;
+  name:string;
+  url:string;
+  id:number;
+  description:string;
 }
 interface IState {
-  userInfo: IUserInfo;
-  setUserInfo: (userId:number) => void;
+  userInfo:IUserInfo;
+  setUserInfo:(userId:number)=>void;
 }
 export const useUserStore = create<IState>((set) => ({
   userInfo: initState,
   setUserInfo: async (userId:number) => {
-    const res = await fetchGetUserInfo(userId);
-    set({ userInfo: res.data });
+    const res = await fetchGetUserInfo(userId)
+    set({ userInfo: res.data })
   },
 }))
